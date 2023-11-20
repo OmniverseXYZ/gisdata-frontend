@@ -1,0 +1,119 @@
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G8791C18XK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G8791C18XK');
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Search Engine Layer View v0.2</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.27/"></script>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <script>
+
+    function getURLParameter(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+    }
+
+    const url = getURLParameter('url');
+    const urljsonres = url + '?f=json'
+
+    //fetch(urljsonres)  // 'url' is the URL you've captured from the query parameter
+
+    fetch(urljsonres)  // 'url' is the URL you've captured from the query parameter
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      console.log(data.fields);
+      //console.log(data.fields[0].name);
+      let fieldJSONArray = [];
+      for (const obj of data.fields) {
+        let newObj = {
+          fieldName: obj.name,
+          label: obj.alias
+        };
+        fieldJSONArray.push(newObj);
+      };
+      //console.log(fieldJSONArray);
+      const extent = data.extent;
+      console.log(extent)
+
+      require([
+      "esri/Map",
+      "esri/views/MapView", 
+      "esri/layers/FeatureLayer", 
+      "esri/widgets/Legend",
+      "esri/widgets/Popup"
+      ], 
+      (Map, MapView, FeatureLayer, Legend, Popup) => {
+          const map = new Map({
+            basemap: "osm"
+          });
+
+          // create a MapView
+          const view = new MapView({
+            container: "viewDiv",
+            map: map,
+            extent: extent,
+            popup: new Popup()
+          });
+
+          // add legend to the bottom left
+          view.ui.add(new Legend({ view: view }), "bottom-left");
+          view.popupEnabled = true;
+          // define popup template
+          const template = {
+            title: "Metadata",
+            content: [
+              {
+                // It is also possible to set the fieldInfos outside of the content
+                // directly in the popupTemplate. If no fieldInfos is specifically set
+                // in the content, it defaults to whatever may be set within the popupTemplate.
+                type: "fields",
+                fieldInfos: fieldJSONArray
+              }
+            ]
+          };
+
+          // define the feature layer based on the layer url from the url param
+          const featureLayer = new FeatureLayer({
+            url: url,
+            popupTemplate: template
+          });
+
+          // add the feature layer to the map
+          map.add(featureLayer);
+
+        });
+    })
+    .catch(error => {
+      console.error('Error fetching or parsing the data:', error);
+    });
+
+
+      
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>

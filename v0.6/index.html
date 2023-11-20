@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G8791C18XK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G8791C18XK');
+    </script>
+    <!-- METADATA -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine Alpha v0.6</title>
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@GISDataIO"> 
+    <meta name="twitter:title" content="GISData.io Search Engine"> 
+    <meta name="twitter:description" content="A GIS data search engine that streamlines the discovery and access to geospatial datasets, empowering users to spend less time searching and more time making maps."> 
+    <meta name="twitter:image" content="https://gisdata.io/gisdata-1.jpg">
+    <!-- Open Graph data -->
+    <meta property="og:title" content="GISData.io Search Engine" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://search.gisdata.io/" />
+    <meta property="og:image" content="https://gisdata.io/gisdata-1.jpg" />
+    <meta property="og:image:width" content="1216">
+    <meta property="og:image:height" content="832">
+    <meta property="og:description" content="A GIS data search engine that streamlines the discovery and access to geospatial datasets, empowering users to spend less time searching and more time making maps." />
+    <meta property="og:site_name" content="GISData.io Search" />
+    <!-- static/dynamic assets -->
+    <link rel="stylesheet" href="css/uikit.css" />
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+</head>
+<body>
+  <nav class="uk-navbar-container">
+    <div class="uk-container">
+      <div uk-navbar>
+
+        <div class="uk-navbar-left">
+          <a class="uk-navbar-toggle uk-navbar-toggle-animate" uk-navbar-toggle-icon href=""></a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li class="uk-active"><a href="https://gisdata.io/">Home</a></li>
+                        <li><a class="" href="#modal-sections" uk-toggle>About</a></li>
+                        <li><a href="https://blog.gisdata.io/">Blog</a></li>
+                        <li><a href="https://docs.gisdata.io/">Docs</a></li>
+                        <li><a href="https://changelog.gisdata.io/">Changelog</a></li>
+                    </ul>
+                </div>
+          <a class="uk-navbar-item uk-logo" href="" aria-label="Back to Home"></a>
+        </div>
+
+        <div class="uk-navbar-left">
+
+          <ul class="uk-navbar-nav">
+              <li>
+                  <a href><span uk-icon="folder" uk-tooltip="Categories. Some may take a few seconds to load."></span></a>
+                  <div class="uk-dropbar uk-dropbar-top" uk-dropdown="">
+                      <ul class="uk-nav uk-navbar-dropdown-nav">
+                          <li class="uk-nav-header">Click Category to Explore</li>
+                          <li><a class="selector" href="">Nature and Environment</a></li>
+                          <li><a class="selector" href="">Administrative</a></li>
+                          <li><a class="selector" href="">Recreation</a></li>
+                          <li><a class="selector" href="">Infrastructure and Urban</a></li>
+                          <li><a class="selector" href="">Agriculture and Farming</a></li>
+                          <li><a class="selector" href="">Cultural and Historical</a></li>
+                          <li><a class="selector" href="">Climate and Weather</a></li>
+                          <li><a class="selector" href="">Points of Interest</a></li>
+                          <li><a class="selector" href="">Disaster and Emergency</a></li>
+                          <li><a class="selector" href="">Education and Research</a></li>
+                          <li><a class="selector" href="">Health and Medicine</a></li>
+                      </ul>
+                  </div>
+              </li>
+          </ul>
+
+      </div>
+
+
+        <div class="uk-navbar-center">
+        <div class="uk-navbar-item">
+          <form class="uk-grid-small" uk-grid>
+            <div class="uk-width-1-1">
+              <div class="uk-margin" id="search-container">
+                <div class="uk-inline">
+                  <span class="uk-form-icon" uk-icon="icon: search"></span>
+                  <input class="uk-input uk-width-small uk-hidden@m" type="text" id="search-input-1" placeholder="Search..." uk-tooltip="Enter one word query for best result">
+                  <input class="uk-input uk-width-medium uk-visible@m uk-hidden@l" type="text" id="search-input-2" placeholder="Search..." uk-tooltip="Enter one word query for best result">
+                  <input class="uk-input uk-width-large uk-visible@l" type="text" id="search-input-3" placeholder="Search..." uk-tooltip="Enter one word query for best result">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        </div>
+        
+        <div class="uk-navbar-right">
+          <button class="uk-button uk-button-primary" id="search-button" type="submit" onclick="search()" uk-tooltip="Search"><span uk-icon="search"></span></button> 
+        </div>
+      
+      </div>
+    </div>
+  </nav>
+
+  <div id="modal-sections" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">About</h2>
+        </div>
+        <div class="uk-modal-body">
+          <p>Welcome to the GISData.io Search Engine alpha v0.4!
+            The functionality is very basic. It does not support advanced queries. 
+            It only matches words in the query to words that appear in the data set. 
+            The data set contains <strong>483,000 total layers</strong>. 
+            I would really appreciate your feedback, bugs, and ideas. 
+            Please use this <strong><a href="https://forms.gle/NmaDyxNPkn9pCRLD6">form to submit any feedback.</a></strong>
+          </p>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-primary uk-modal-close" type="button">Close</button>
+        </div>
+    </div>
+  </div>
+
+  <!----
+    <p>
+      Example queries: parcels, elevation, water, highway
+    </p>
+    <div class="uk-margin" id="search-container">
+      <div class="uk-inline">
+        <span class="uk-form-icon" uk-icon="icon: search"></span>
+        <input class="uk-input uk-form-width-large" type="text" id="search-input" placeholder="Search...">
+      </div>
+      <button class="uk-button uk-button-primary" id="search-button" type="submit" onclick="search()">Search</button> 
+    </div>
+  -->
+    <div id="result-count">
+      <!-- Result count will be displayed here -->
+    </div>
+    <div class="uk-child-width-1-3@s uk-grid-match" id="results-container" uk-grid>
+      <!-- results will be displayed here -->
+    </div>
+    <script src="app.js"></script>
+    <script>
+      // Wait for the document to be fully loaded
+      document.addEventListener("DOMContentLoaded", function() {
+          // Define an array of input IDs
+          var inputIds = ["search-input-1", "search-input-2", "search-input-3"];
+          // Loop through each input ID
+          inputIds.forEach(function(inputId) {
+              // Get the input element by its ID
+              var input = document.getElementById(inputId);
+              // Check if the input element exists
+              if (input) {
+                  // Add a keypress event listener to the input
+                  input.addEventListener("keypress", function(event) {
+                      // For each keypress event, loop through the input IDs
+                      inputIds.forEach(function(otherInputId) {
+                          // If the current input ID in the loop is not the one being typed in
+                          if (otherInputId !== inputId) {
+                              // Get the other input elements
+                              var otherInput = document.getElementById(otherInputId);
+                              // If the other input exists, clear its value
+                              if (otherInput) {
+                                  otherInput.value = "";
+                              }
+                          }
+                      });
+                      // Check if the key pressed was the "Enter" key
+                      if (event.key === "Enter") {
+                          // Prevent the default behavior of the "Enter" key
+                          event.preventDefault();
+                          // Simulate a click event on the search button
+                          document.getElementById("search-button").click();
+                      }
+                  });
+              }
+          });
+      });
+    </script>
+    
+</body>
+</html>
