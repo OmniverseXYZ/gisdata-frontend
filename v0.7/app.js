@@ -1,8 +1,8 @@
 
 var data; 
 var resultCount = document.getElementById("result-count");
-var searchAPIURL = 'https://www.gisapi.io/api/data/search/';
-var categoryAPIURL = 'https://www.gisapi.io/api/data/category/';
+var searchAPIURL = 'https://gisapi.io/api/data/search/';
+var categoryAPIURL = 'https://gisapi.io/api/data/category/';
 
 
 function search() {
